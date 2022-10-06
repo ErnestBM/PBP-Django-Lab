@@ -1,0 +1,44 @@
+<!-- <body>    
+    <script>
+        function httpGet (url, callback) {
+            const request = new XMLHttpRequest();
+
+            request.open('get', url, true);
+            request.onload = function(){
+                callback(request);
+            }
+
+            request.send();
+        }
+
+        httpGet('initial_wishlist_data.json', function(request){
+            console.log(request.responseText)
+        })
+    </script>
+</body> -->
+
+<body>
+    <script type="text/javascript">
+        function refresh() {
+            $.ajax({
+                type: "GET",
+                url: '/wishlist/json',
+                dataType: "json",
+                success: function(data) {
+                    the_data = data
+                }
+            });
+        }
+
+        function refresh2() {
+            var the_data = refresh();
+            var itemHtml = <table> <tr> <th> Nama Barang </th> </tr> </table>
+            for (var i = 0; i = the_data.length; i++) {
+                var item = the_data[i].fields;
+                itemHtml += '<tr> <th>' + item.nama_barang + '<th> <tr>';
+            }
+            itemHtml += "</table>";
+            document.getElementById('lala').innerHTML = itemHtml;
+        }
+    </script>
+</body>
